@@ -26,7 +26,7 @@ export class SchedulerComponent {
 
   ngAfterViewInit(): void {
     this.updateCurrentTimeIndicator();
-    // setInterval(() => this.updateCurrentTimeIndicator(), 60000); // Update every minute
+    setInterval(() => this.updateCurrentTimeIndicator(), 60000); // Update every minute
   }
 
   updateCurrentTimeIndicator() {
