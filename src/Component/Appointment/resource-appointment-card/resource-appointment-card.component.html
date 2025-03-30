@@ -1,0 +1,8 @@
+<div class="appointment-card" [style.top.px]="topOffset" [ngClass]="{
+    'no-show': appointment.status === 'NotAllocated',
+    'created': appointment.status === 'Created',
+    'pending': appointment.status === 'Pending'
+}" [style.height.px]="height">
+    <p>{{ appointment.title }}</p>
+    <small *ngIf="appointment.status !== 'NotAllocated'">{{ appointment.resourceStartTime | date:'shortTime' }} - {{ appointment.resourceEndTime | date:'shortTime' }}</small>
+</div>

@@ -1,0 +1,28 @@
+<div class="date-navigation">
+    <button (click)="goToPreviousDay()"><</button>
+    <span>{{ store.selectedDate() | date:'EEE d MMM' }}</span>
+    <button (click)="goToNextDay()">></button>
+</div>
+<div class="scheduler">
+    <div class="grid">
+        <div class="time-column">
+            <div class="time-slot padding-top" *ngFor="let time of store.timeSlots()">
+                {{ time }} {{getStatus(time)}}
+            </div>
+        </div>
+        <div class="resource-column" *ngFor="let resource of store.resoruceMember()">
+            <div class="resource-header">{{resource}}</div>
+            <div class="time-slot" *ngFor="let time of store.timeSlots(); let i = index">
+                <!-- Filter appointments by resource and time -->
+                <div class="quarter-hour-marker" *ngFor="let marker of [1,2,3]"></div>
+                <app-resource-appointment-card *ngFor="let appointment of store.getAppointments(resource, i)"
+                    [appointment]="appointment"
+                    [topOffset]="store.getAppointmentTopOffset(appointment, i)"
+                    [height]="store.getAppointmentHeight(appointment, i)"
+                ></app-resource-appointment-card>
+            </div>  
+        </div>
+    </div>
+
+    <div class="current-time-indicator" id="current-time-indicator"></div>
+</div>
